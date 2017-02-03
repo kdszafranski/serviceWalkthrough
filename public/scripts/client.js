@@ -5,19 +5,19 @@ app.controller('GifController', function(GifGetter){
   var vm = this;
 
 //search Query will be from text input
-  // vm.searchQuery = "UPsilon"
 vm.randomGif = function(){
   GifGetter.randomGif().then(function(res){
-    console.log("from the controller", res);
+//set url for image tag:
     vm.randomGifUrl = res.data.image_url;
   });
 }
 
-
-// console.log("test:", GifGetter.randomGif());
-
 //searching gifs
 vm.searchGif = function(searchQuery){
+  if(searchQuery === undefined){
+    searchQuery = "Beyonce";
+  }
+
   GifGetter.searchGif(searchQuery).then(function(res){
     //store array of gifs in searchGifUrl
     vm.searchGifUrl = res.data;

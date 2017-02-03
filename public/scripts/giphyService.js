@@ -7,7 +7,8 @@ app.service('GifGetter', function($http){
   this.randomGif = function(){
     return $http({
       type:'GET',
-      url: giphyUrl + 'random?api_key=' + publicAPIkey
+      url: giphyUrl + 'random?api_key=' + publicAPIkey,
+      params: {"rating": 'g'}
     }).then(function(response){
       // console.log(response);
       return response.data;
@@ -21,7 +22,8 @@ app.service('GifGetter', function($http){
   this.searchGif = function(query){
     return $http({
       type:'GET',
-      url: giphyUrl + 'search?q=' + query + "&api_key=" + publicAPIkey
+      url: giphyUrl + 'search?q=' + query + "&api_key=" + publicAPIkey,
+      params: {"rating": 'g', "limit": 1}
     }).then(function(response){
       console.log(response);
       return response.data;
